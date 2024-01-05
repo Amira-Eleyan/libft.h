@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/18 15:31:17 by marvin            #+#    #+#             */
-/*   Updated: 2023/12/18 15:31:17 by marvin           ###   ########.fr       */
+/*   Created: 2023/12/22 18:03:50 by marvin            #+#    #+#             */
+/*   Updated: 2023/12/22 18:03:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void *ft_calloc(size_t num_blocks, size_t block_size)
+char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-    char *ptr;
-    size_t i;
+    int i;
 
     i = 0;
-    ptr = (char *)malloc(num_blocks * block_size);
-    if (ptr == (NULL))
-        return (NULL);
-
-    while (i < (num_blocks * block_size))
+    while(s[i])
     {
-        ptr[i] = 0;
         i++;
     }
-    return ((void *)ptr);
+    char *s1;
+    s1 = malloc(i+1);
+    if (*s1 == NULL)
+        return (NULL);
+    i =0;
+    while(s[i])
+    {
+        s1[i] = f(i, s[i]);
+        i++;
+    }
+    s1[i] = '\0';
+    return(s1);
 }

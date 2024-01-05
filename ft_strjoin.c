@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/18 15:31:17 by marvin            #+#    #+#             */
-/*   Updated: 2023/12/18 15:31:17 by marvin           ###   ########.fr       */
+/*   Created: 2023/12/19 14:36:16 by marvin            #+#    #+#             */
+/*   Updated: 2023/12/19 14:36:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void *ft_calloc(size_t num_blocks, size_t block_size)
+char *ft_strjoin(char const *s1, char const *s2)
 {
-    char *ptr;
     size_t i;
+    size_t j;
+    char *s;
 
     i = 0;
-    ptr = (char *)malloc(num_blocks * block_size);
-    if (ptr == (NULL))
+    j = 0;
+    while (s1[i])
+        i++;
+    while (s2[j])
+        j++;
+    s = (char *)malloc(1 + i + j);
+    if (s == NULL)
         return (NULL);
-
-    while (i < (num_blocks * block_size))
+    i = 0;
+    while (s1[i])
     {
-        ptr[i] = 0;
+        s[i] = s1[i];
         i++;
     }
-    return ((void *)ptr);
+    j = 0;
+    while (s2[j])
+    {
+        s[i+j] = s2[j];
+        j++;
+    }
+    s[i+j] = '\0';
 }

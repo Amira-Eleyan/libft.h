@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/18 15:31:17 by marvin            #+#    #+#             */
-/*   Updated: 2023/12/18 15:31:17 by marvin           ###   ########.fr       */
+/*   Created: 2024/01/05 20:24:49 by marvin            #+#    #+#             */
+/*   Updated: 2024/01/05 20:24:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void *ft_calloc(size_t num_blocks, size_t block_size)
+void ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-    char *ptr;
-    size_t i;
-
+    int i;
     i = 0;
-    ptr = (char *)malloc(num_blocks * block_size);
-    if (ptr == (NULL))
-        return (NULL);
-
-    while (i < (num_blocks * block_size))
+    if(!s || !f)
+        return;
+    while (s[i])
     {
-        ptr[i] = 0;
-        i++;
+        f(i, s+i)
+        i++
     }
-    return ((void *)ptr);
 }
